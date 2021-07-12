@@ -2,7 +2,7 @@
 layout: post
 title: [Markdown] md 이미지 첨부
 date: 2021-07-12 18:00:00 +0900
-category: Java
+category: Markdown
 ---
 <br/>
 <br/>
