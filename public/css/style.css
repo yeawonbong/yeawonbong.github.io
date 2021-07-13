@@ -100,7 +100,7 @@ code {
 	padding: 15px;
 	z-index: 1;
 	background-color: rgb(255, 255, 255);
-	color: rgb(33, 33, 33);
+	color: rgb(194, 194, 194);
 }
 
 .sidebar-item {
@@ -113,9 +113,9 @@ code {
 }
 
 .sidebar-brand > a {
-	font-size: 300%;
+	font-size: 250%;
 	font-family: 'Gelasio';
-	color: #fff;
+	color: rgb(36, 36, 36);
 }
 
 .lead {
