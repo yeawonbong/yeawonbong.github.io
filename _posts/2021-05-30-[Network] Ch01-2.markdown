@@ -1,8 +1,8 @@
 ---
 layout: post
-title: [Network] Ch01. 네트워크 소개 - 2. 네트워크 구조 
+title: "[Network] Ch01. 네트워크 소개 - 2. 네트워크 구조"
 date: 2021-05-30 13:57:23 +0900
-category: Network
+category: network jekyll
 ---
 
 <br/>

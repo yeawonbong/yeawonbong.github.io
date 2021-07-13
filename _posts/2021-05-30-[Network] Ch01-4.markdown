@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [Network] Ch01. 네트워크 소개 - 4. TCP-IP Suite 비교와 캡슐화 
+title: "[Network] Ch01. 네트워크 소개 - 4. TCP-IP Suite 비교와 캡슐화"
 date: 2021-05-30 15:57:23 +0900
 category: Network
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [Network] Ch01. 네트워크 소개 - 3. OSI 7 Layer 모델
+title: "[Network] Ch01. 네트워크 소개 - 3. OSI 7 Layer 모델"
 date: 2021-05-30 14:57:23 +0900
 category: Network
 ---
