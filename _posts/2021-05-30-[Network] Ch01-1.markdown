@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Network] Ch01. 네트워크 소개 - 1. 네트워크 정의 및 역사" 
+title: "[Network] Ch01. 네트워크 소개 - 1. 네트워크 정의 및 역사"
 date: 2021-05-30 12:57:23 +0900
 category: network
 ---

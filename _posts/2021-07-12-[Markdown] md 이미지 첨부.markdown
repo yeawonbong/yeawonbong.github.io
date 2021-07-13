@@ -1,8 +1,8 @@
 ---
 layout: post
-title: [Markdown] md 이미지 첨부
+title: "[Markdown] md 이미지 첨부"
 date: 2021-07-12 18:00:00 +0900
-category: Markdown
+category: markdown
 ---
 
 <br/>

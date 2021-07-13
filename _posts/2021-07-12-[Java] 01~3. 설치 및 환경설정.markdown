@@ -1,8 +1,8 @@
 ---
 layout: post
-title: [Java] 01~3. 설치 및 환경설정
+title: "[Java] 01~3. 설치 및 환경설정"
 date: 2021-07-12 16:57:23 +0900
-category: Java
+category: java
 ---
 
 *Java study with 생활코딩*
