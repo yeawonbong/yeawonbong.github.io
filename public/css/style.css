@@ -86,7 +86,7 @@ code {
 }
 
 .content {
-	margin-left: 200px;
+	margin-left: 10px;
 	margin-right: auto;
 	flex: 1 1 auto;
 	max-width: 900px;
@@ -132,7 +132,7 @@ code {
 }
 
 .nav-title {
-	font-size: 20%;
+	font-size: 30%;
 	font-family: "Gelasio";
 	text-transform: uppercase;
 	border-bottom: 1px solid gray;
@@ -140,8 +140,8 @@ code {
 }
 
 a.nav-item {
-	font-size: 120%;
-	font-family: "monospace";
+	font-size: 100%;
+	font-family: "Gelasio";
 	text-transform: capitalize;
 	color: rgb(70, 70, 70);
 }
