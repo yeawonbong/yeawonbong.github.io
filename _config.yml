@@ -22,7 +22,7 @@ title: ybong
 email: ybong.develop@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   study blog
-baseurl: "/ybong"
+# baseurl: "/ybong"
 url: "https://yeawonbong.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: yeawonbong
 highlighter: rouge
