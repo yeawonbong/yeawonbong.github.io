@@ -86,8 +86,7 @@ code {
 }
 
 .content {
-	margin-left: 10px;
-	margin-right: auto;
+	margin-left: 30px;
 	flex: 1 1 auto;
 	max-width: 900px;
 }
@@ -143,7 +142,7 @@ a.nav-item {
 	font-size: 100%;
 	font-family: "Gelasio";
 	text-transform: capitalize;
-	color: rgb(70, 70, 70);
+	color: rgb(89, 88, 88);
 }
 
 a.nav-item:hover { color: #777; }
@@ -296,7 +295,7 @@ footer {
 }
 
 .sidebar-footer a {
-	color: #ccc;
+	color: rgb(104, 104, 104);
 }
 
 
