@@ -86,9 +86,10 @@ code {
 }
 
 .content {
-	margin-right: 180px;
+	margin-left: auto;
+	margin-right: auto;
 	flex: 1 1 auto;
-	padding: 0px 400px;
+	max-width: 900px;
 }
 
 .sidebar {

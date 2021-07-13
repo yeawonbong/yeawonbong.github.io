@@ -33,7 +33,7 @@ category: network
 
 동그라미가 PC, 네모가 중계기
 
-<img src="img/Network/3.png">
+<img src="{{site.baseurl}}/_posts/img/Network/3.png">
 
 - **Star**
     - PC들이 중계기를 통해서 통신
