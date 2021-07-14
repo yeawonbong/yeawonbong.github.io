@@ -37,7 +37,7 @@ category: network
 - **인캡슐레이션**
     - 하나하나씩 데이터를 캡슐화하고 헤더를 붙이는 단계
 
-        <img src="./img/Network/18.png" width="600px">
+        <img src='./img/Network/18.png' width="600px">
 
 
     - 과정

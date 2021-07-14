@@ -58,7 +58,7 @@ JAVA APT 507 / floor Lamp → Lighting on
 
 이클립스 디버거를 알아보자.
 
-![2](./img/java/2.png)
+![2](https://user-images.githubusercontent.com/75327385/125628324-9ac8d910-adb0-4a4a-97b7-246789a225c4.png)
 
 1. Resume(F8): 다음 breakpoint까지 한번에 실행 (breakpoint는 코드 넘버부분 더블클릭하여 지정가능)
 2. Terminate: 디버깅 종료
