@@ -44,4 +44,4 @@ HelloJavaApp.java 파일을 실행시키면, 같은 이름인 HelloWorldApp clas
 
 코드를 작성하고 저장했을 때 자동으로 컴파일되어 `.class`라는 확장자의 파일이 만들어지는데 (java application), RUN을 누르면, Java Virtual Machine을 시켜서 이 클래스 파일을 읽어서 컴퓨터를 동작시키는 것이다. 
 
-<center><img src = "./img/04.0.java_process.png" width = "400px"></center>
+<center><img src = "./img/java/1.png" width = "400px"></center>
