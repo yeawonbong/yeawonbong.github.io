@@ -1,0 +1,64 @@
+---
+layout: post
+title: "[Java] 07~8. 변수"
+date: 2021-07-13 18:13:00 +0900
+category: java
+---
+
+*Java study with 생활코딩*
+<br/>
+## 1. 변수의 정의
+
+data type을 변수에 정의
+
+## 2. 변수의 효용
+
+- 변수를 String에 호출하기 → `"+[변수명]+"`
+
+    ```java
+    String name = "ybong";
+    System.out.println("Hello, ybong...ybong...ybong...bye");		
+    System.out.println("Hello, "+name+"..."+name+"...ybong...bye");
+    name = "yeawon";
+    System.out.println("Hello, "+name+"..."+name+"...ybong...bye");
+    ```
+
+    ```
+    Hello, ybong...ybong...ybong...bye
+    Hello, ybong...ybong...ybong...bye
+    Hello, yeawon...yeawon...ybong...bye
+    ```
+
+## 3. 데이터 타입의 변환
+
+- 캐스팅 (casting)
+    - 더 큰 자료형으로 대입은 자동으로 캐스팅되어 가능하나
+    - 더 작은 자료형으로 대입은 자동으로 불가하다. 캐스팅을 해줘야 함.
+
+        ```java
+        double a = 1.1;
+        double b = 1;
+        System.out.println(b); // 자동으로 double로 캐스팅되어 들어간다. 
+
+        int c = 1.1; // Error: cannot convert from double to int
+        int d = (int)1.1; //casting -> 1 (캐스팅하면서 손실이 일어난다)
+        ```
+
+---
+
+- int to string
+    - `Integer.toString(숫자)` : int to String (itoa)
+
+        ```java
+        String str = Integer.toString(1); // "1"
+        ```
+
+- `[변수].getClass()` : 변수의 자료형을 반환
+
+    ```java
+    System.out.println(str.getClass());
+    ```
+
+    ```
+     출력: class java.lang.String
+    ```
