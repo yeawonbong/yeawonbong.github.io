@@ -1,0 +1,14 @@
+---
+layout: post
+title: "TIL_210714"
+date: 2021-07-14 18:13:00 +0900
+category: TIL(Today I Learned)
+---
+
+- 궁금했던 embeded 관련하여 좀 찾아봤다. 흥미로운 분야라고 생각이 듦.
+- minitalk 관련하여 signal 관련 공부
+	- sigaction, sa_sigaction, sigingo... 에 대해 이제 진짜 감을 잡은 것 같다.
+	- siginfo 인자로 signal client pid 받아서 출력하는 것 완료.
+	- minitalk 구조 다 짰다! 내일부터 찐코딩 시작
+- 깃헙 블로그 좀 더 정리했다. 이미지 안올라가던 것 일단 해결함.
+- TIL 기록 시작!! 1일1커밋 시작해본다.
