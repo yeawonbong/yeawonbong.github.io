@@ -2,7 +2,7 @@
 layout: post
 title: "[Git] Branch 브랜치"
 date: 2021-07-14 18:13:00 +0900
-category:
+category: Git
 ---
 ~~*계속 덧붙이기*~~
 
