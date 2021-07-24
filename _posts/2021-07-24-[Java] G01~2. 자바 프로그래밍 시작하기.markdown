@@ -7,11 +7,11 @@ category: java
 
 *Java study with Goorm*
 <br/>
-    <li><a id="#JVM">JVM(Java Virtual Machine)</a><br/>
-    <li><a id="#SDT">SDT(Strict Data Type)</a><br/>
-    <li><a id="#Garbage Collector">Garbage Collector</a><br/>
-    <li><a id="#POP">POP (Procedure Oriented Program)</a><br/>
-    <li><a id="#OOP">OOP(Object Oriented Program)</a><br/>
+<a id="#JVM">JVM(Java Virtual Machine)</a><br/>
+<a id="#SDT">SDT(Strict Data Type)</a><br/>
+<a id="#Garbage Collector">Garbage Collector</a><br/>
+<a id="#POP">POP (Procedure Oriented Program)</a><br/>
+<a id="#OOP">OOP(Object Oriented Program)</a><br/>
 <br/>
 
 
