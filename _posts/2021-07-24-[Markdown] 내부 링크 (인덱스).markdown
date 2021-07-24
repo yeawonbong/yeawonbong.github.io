@@ -6,7 +6,7 @@ category: markdown
 ---
 
 ```
-[텍스트](연결된링크)
+[   텍스트](연결된링크)
 ```
 ## 예시
 
@@ -16,10 +16,10 @@ category: markdown
 [3. Third HERE](#third-here)  
 
 ```
-목차  
-[1. 일번](#일번)  
-[2. 이번](#이번)  
-[3. Third HERE](#third-here)  
+    목차  
+    [1. 일번](#일번)  
+    [2. 이번](#이번)  
+    [3. Third HERE](#third-here)  
 ```
 주의점
 - 링크 부분에 제목(헤드)를 명시해주면 된다. 제목으로 이동.
