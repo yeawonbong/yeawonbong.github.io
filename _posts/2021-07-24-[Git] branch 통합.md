@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Git] Branch 통합"
+title: "[Git] Branch 통합 (merge, rebase)"
 date: 2021-07-24 18:13:00 +0900
 category: Git
 ---
@@ -59,4 +59,6 @@ merge 와 rebase 는 팀 운용 방침에 따라 구별해 쓸 수 있습니다.
 ```
 
 ---
-<a href="https://backlog.com/git-tutorial/kr/stepup/stepup1_4.html" download>참고</a>
+<a href="https://backlog.com/git-tutorial/kr/stepup/stepup1_4.html" download>branch 병합 참고</a>
+
+<a href="https://velog.io/@godori/Git-Rebase" download>rebase 참고</a>

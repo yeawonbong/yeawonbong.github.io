@@ -1,0 +1,107 @@
+---
+layout: post
+title: "[Java] G01~2. 자바 프로그래밍 시작하기"
+date: 2021-07-24 18:13:00 +0900
+category: java
+---
+
+*Java study with Goorm*
+<br/>
+index<br/>
+<a herf="#JVM">JVM(Java Virtual Machine)</a><br/>
+<a herf="#SDT">SDT(Strict Data Type)</a><br/>
+<a herf="#Garbage Collector">Garbage Collector</a><br/>
+<a herf="#POP">POP (Procedure Oriented Program)</a><br/>
+<a herf="#OOP">OOP(Object Oriented Program)</a><br/>
+
+
+# 자바의 특징
+
+- 아래 내용과 중복임
+
+# 자바 관련 유용한 개념들
+
+## JVM (Java Virtual Machine)
+<p id="JVM"><p>
+
+- Java 동작 과정
+
+    ![image](https://user-images.githubusercontent.com/75327385/126873508-604ed6d3-5da2-4c2d-bf42-ad25efabf880.png)
+
+    - Java 프로그램은 ***.java**라는 확장자로 이루어져 있다.
+    - 이 파일은 `JAVAC Compiler`를 통해 ***.class**라는 파일로 변환된다
+        - compile: 소스코드를 기계어로 번역하여 실행가능한 프로그램으로 만드는 과정
+    - 각 운영체제에 설치되어 있는 `JVM`이  *.class파일을 운영체제에 맞게 실행한다.
+
+- JVM을 사용하기 때문에 생기는 특징
+    - JVM이 설치되어있어야 Java 프로그램을 실행시킬 수 있다. 
+    (자바 개발 환경인 JDK를 설치하면 JRE는 자동으로 설치됨)
+        - `JRE` : Java Runtime Environment, 자바 런타임 환경, 다른 소프트웨어를 실행하기 위해 고안된 일종의 소프트웨어. *~~자바 클래스 라이브러리, 클래스 로더, 자바 가상 머신 등이 포함된다~~*
+    - 같은 Java 소스코드는 여러 운영체제에서 그대로 사용 가능하다. *~~Java는 첫번째 Managed Language이며, 최근에는 .NET과 같은 개발환경에서 또한 Managed Language 형태로 제공된다.~~*
+        - C와 같은 특정 운영체제에서만 사용가능한 프로그램 언어를 `Native Language`라고 함
+        - 반대로 Java와 같이 여러 운영체제에서 사용할 수 있는 프로그래밍 언어를 `Managed Language`라고 함
+    - Managed Language는 Native Language보다 실행속도가 느리다. 
+    *Byte Code가 각 운영체제에 맞춰서 실행하기 위해서는 JVM이 각 운영체제에 맞는 Native 언어로 변환해주는 작업을 한다. 때문에 Native Language보다 느릴수밖에.*
+
+## SDT (Strict Data Type)
+<p id="SDT"><p>
+
+자바의 또다른 특징으로는 `SDT (trict Data Type)`이 있다.
+
+Managed Language를 다룰 땐, 사용하고자하는 자료형이 무엇인지 정확하게 표현해야 하며, 상황에 따라 꼭 맞는 자료형을 사용해야 한다. 이를 SDT라고 한다. 
+
+- C언어는 Data Type을 정확하게 사용하지 않아도 된다. 예시로 조건문(if)에서 C는 1과 같은 int형 변수를 입력해도 문제없이 동작하지만, 자바는 꼭 boolean형이 입력되어야 동작을 한다.
+
+## Garbage Collector
+<p id="Garbage Collector"><p>
+
+프로그램 실행 중에 사용하지 않는 메모리를 자동해제한다. 프로그램의 백그라운드에서 동작하면서 구간 종료 시('}'에 도달할 때) 필요없는 메모리를 알아서 강제 반환시켜주는 기능이다. 
+
+## POP (Procedure Oriented Program)
+<p id="POP"><p>
+
+- **절차지향 프로그램**.
+- POP를 사용하는 언어로는 C, VB, PASCAL 등이 있다. 프로그램 실행시 프로그래밍된 순서대로 진행하며, 모든 순서가 종료되면 프로그램 또한 종료된다.
+- POP의 특징
+    - **기능을 우선시**하여 프로그래밍하므로, OOP에 비해 빠르게 프로그래밍이 가능하다.
+    - 대부분의 함수가 전역 데이터를 사용하기 때문에, **데이터 접근이 용이**하다. 하지만 이는 곧 **보안성이 낮다**는 말과 같다.
+    - POP는 **데이터의 모듈화가 어렵다**. (`모듈화`: 프로그램을 관리가 용이하도록 기능 단위로 분리하는 작업) 따라서 프로그램의 유지보수가 어렵다.
+
+## OOP(Object Oriented Program)
+<p id="OOP"><p>
+
+- **객체지향 프로그램**.
+- 대표적으로 JAVA, C++, C#, .NET 등이 있다.
+- OOP는 POP의 단점을 보완하여 개발된 개념이다. '객체'라는 개념을 통해 데이터 및 함수를 모듈화하여 프로그램의 유지보수와 보안성을 강화하였다.
+- OPP의 특징
+    - `캡슐화`
+        - **데이터를 캡슐화(은닉화)함**으로써, 상황에 따라 프로그램 외부에서 접근 가능한 데이터를 지정할 수 있다. 즉, 내부적으로 숨겨야 하는 데이터의 접근을 막음으로써 데이터의 **보안성이 좋아**진다.
+    - `추상화`
+        - OPP에서 제공하는 함수/데이터 모듈화의 일종으로, 객체의 **기본적인 틀을 미리 만들어놓을 수 있는 기능**이다. 추상화된 객체는 상속을 사용하여 구체적인 객체로 만들어 사용할 수 있다.
+    - `상속`
+        - OPP에서 제공하는 함수/데이터 모듈화의 일종으로, 피상속 객체**(부모 클래스)의 데이터 및 함수들을 상속 객체로 그대로 이어받아 사용할 수 있는 기능**이다.
+        - **코드의 재사용성**을 높일 수 있다. (부모를 복제한 형태로 가져와 사용할 수 있음 : `Overriding`)
+    - `다형성`
+        - **객체가 다양한 형태로 표현될 수 있다**는 개념으로, 추상화된 객체와 같이 "틀"을 가진 객체가 구체화된 객체로 표현가능하다는 뜻이다.
+
+    (정리)
+	![image](https://user-images.githubusercontent.com/75327385/126873528-3637da33-4906-42e8-808c-8ba1252f1672.png)
+
+---
+
+# Practice
+
+### 기본 출력 함수
+
+- `System.out.println`
+
+	: 뒤에 개행이 붙는다.
+
+- `System.out.print`
+
+---
+
+ # 정리
+- Java가 Managed Language인 이유, 그에 따른 특징
+- POP와 OPP의 비교, OOP의 특징 4가지 - 캡슐화, 추상화, 상속, 다형성
+- 콘솔 출력 공부
