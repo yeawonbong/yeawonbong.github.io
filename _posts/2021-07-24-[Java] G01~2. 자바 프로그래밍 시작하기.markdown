@@ -9,7 +9,7 @@ category: java
 <br/>
 <a href="#JVM">JVM(Java Virtual Machine)</a><br/>
 <a href="#SDT">SDT(Strict Data Type)</a><br/>
-<a href="#Garbage Collector">Garbage Collector</a><br/>
+<a href="#GC">Garbage Collector</a><br/>
 <a href="#POP">POP (Procedure Oriented Program)</a><br/>
 <a href="#OOP">OOP(Object Oriented Program)</a><br/>
 <br/>
@@ -21,8 +21,9 @@ category: java
 
 # 자바 관련 유용한 개념들
 
-## <p id="JVM">JVM (Java Virtual Machine)<p>
+<p id="JVM">-<p>
 
+## JVM (Java Virtual Machine)
 - Java 동작 과정
 
     ![image](https://user-images.githubusercontent.com/75327385/126873508-604ed6d3-5da2-4c2d-bf42-ad25efabf880.png)
@@ -42,7 +43,9 @@ category: java
     - Managed Language는 Native Language보다 실행속도가 느리다. 
     *Byte Code가 각 운영체제에 맞춰서 실행하기 위해서는 JVM이 각 운영체제에 맞는 Native 언어로 변환해주는 작업을 한다. 때문에 Native Language보다 느릴수밖에.*
 
-## <p id="SDT">SDT (Strict Data Type)<p>
+<p id="SDT">-<p>
+
+## SDT (Strict Data Type)
 
 
 자바의 또다른 특징으로는 `SDT (trict Data Type)`이 있다.
@@ -51,13 +54,16 @@ Managed Language를 다룰 땐, 사용하고자하는 자료형이 무엇인지 
 
 - C언어는 Data Type을 정확하게 사용하지 않아도 된다. 예시로 조건문(if)에서 C는 1과 같은 int형 변수를 입력해도 문제없이 동작하지만, 자바는 꼭 boolean형이 입력되어야 동작을 한다.
 
+<p id="GC">-<p>
+
 ## Garbage Collector
 
-<p id="Garbage Collector">Garbage Collector<p>
 
 프로그램 실행 중에 사용하지 않는 메모리를 자동해제한다. 프로그램의 백그라운드에서 동작하면서 구간 종료 시('}'에 도달할 때) 필요없는 메모리를 알아서 강제 반환시켜주는 기능이다. 
 
-## <p id="POP">POP (Procedure Oriented Program)<p>
+<p id="POP">-<p>
+
+## POP (Procedure Oriented Program)
 
 - **절차지향 프로그램**.
 - POP를 사용하는 언어로는 C, VB, PASCAL 등이 있다. 프로그램 실행시 프로그래밍된 순서대로 진행하며, 모든 순서가 종료되면 프로그램 또한 종료된다.
@@ -66,7 +72,9 @@ Managed Language를 다룰 땐, 사용하고자하는 자료형이 무엇인지 
     - 대부분의 함수가 전역 데이터를 사용하기 때문에, **데이터 접근이 용이**하다. 하지만 이는 곧 **보안성이 낮다**는 말과 같다.
     - POP는 **데이터의 모듈화가 어렵다**. (`모듈화`: 프로그램을 관리가 용이하도록 기능 단위로 분리하는 작업) 따라서 프로그램의 유지보수가 어렵다.
 
-## <p id="OOP">OOP(Object Oriented Program)<p>
+<p id="OOP">-<p>
+
+## OOP(Object Oriented Program)
 
 - **객체지향 프로그램**.
 - 대표적으로 JAVA, C++, C#, .NET 등이 있다.
