@@ -7,12 +7,14 @@ category: java
 
 *Java study with Goorm*
 <br/>
-index<br/>
-<a herf="#JVM">JVM(Java Virtual Machine)</a><br/>
-<a herf="#SDT">SDT(Strict Data Type)</a><br/>
-<a herf="#Garbage Collector">Garbage Collector</a><br/>
-<a herf="#POP">POP (Procedure Oriented Program)</a><br/>
-<a herf="#OOP">OOP(Object Oriented Program)</a><br/>
+<ul>index
+    <li><a id="#JVM">JVM(Java Virtual Machine)</a><br/>
+    <li><a id="#SDT">SDT(Strict Data Type)</a><br/>
+    <li><a id="#Garbage Collector">Garbage Collector</a><br/>
+    <li><a id="#POP">POP (Procedure Oriented Program)</a><br/>
+    <li><a id="#OOP">OOP(Object Oriented Program)</a><br/>
+</ul>
+<br/>
 
 
 # 자바의 특징
@@ -21,8 +23,8 @@ index<br/>
 
 # 자바 관련 유용한 개념들
 
-## <p id="JVM">JVM (Java Virtual Machine)<p>
-
+## JVM (Java Virtual Machine)
+<p id="JVM">JVM<p>
 - Java 동작 과정
 
     ![image](https://user-images.githubusercontent.com/75327385/126873508-604ed6d3-5da2-4c2d-bf42-ad25efabf880.png)
