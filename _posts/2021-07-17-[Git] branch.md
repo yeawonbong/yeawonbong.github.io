@@ -71,6 +71,9 @@ category: Git
 		```
 		$ git checkout -b <생성할 branchname> <원격 저장소의 branchname>
 		```
+- 원격저장소 브랜치 이름변경
+
+	새 브랜치를 생성하고, 옛 삭제하는 것이라 생각하면 된다. (아래 과정 참고)
 
 - 원격저장소 브랜치 생성
 	```
@@ -89,15 +92,16 @@ category: Git
 
 	$ git push origin :<branchname>
 	```
+	```
+	ybong@ybongui-MacBookPro minitalk % git push origin :ongoing 
+	To https://github.com/yeawonbong/minitalk.git
+	 - [deleted]         ongoing
+ 	```
 
 - 브랜치 생성과 삭제를 한번에
 	```
 	$ git push origin :<old_branchname> <new_branchname>
-
-
-- 원격저장소 브랜치 이름변경
 	```
-	$ git push 
 
 
 ---
