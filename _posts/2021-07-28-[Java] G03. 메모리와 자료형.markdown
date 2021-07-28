@@ -1,0 +1,47 @@
+---
+layout: post
+title: "[Java] G03. 메모리와 자료형"
+date: 2021-07-28 23:13:00 +0900
+category: java
+---
+
+*Java study with Goorm*  
+### Index
+- [컴퓨터가 데이터를 저장하는 공간](#컴퓨터가-데이터를-저장하는-공간)
+- [프로그램 동작 원리](#프로그램-동작-원리)
+
+<br/>
+<br/>
+
+
+# 메모리
+
+## 컴퓨터가 데이터를 저장하는 공간
+
+1. Register
+    - CPU(aka 컴퓨터의 두뇌) 내부에서 사용되는 저장공간
+2. Storage
+    - '하드드라이브'라고도 불리는 HDD(Hard Disk Drive)
+    - 용량당 가격이 아주 저렴하다는 장점이 있으나, 속도가 매우 느리다는 단점.
+    - 최근에는 SSD(Solid State Disk)라는 HHD의 속도를 보완한 제품이 출시되고 있다. (가격은 더 비쌈)
+3. Memory
+    - RAM이라고 불리는 하드웨어가 Memory 공간을 담당한다.
+    - Storage보다 빠르지만, Register보다는 느린 속도로, Storage와 Register 사이에 위치하여 다른 속도 및 용량을 갖고 있는 저장장소들을 보완하는 역할
+
+```markdown
+|저장공간|Register|Memory|Storage|
+|:-|:-:|:-:|:-:|
+|용량당 가격|매우비쌈|중간|저렴|
+|처리속도|매우높음|중간|느림|
+|예시|CPU Register|RAM|HDD, SSD|
+```
+
+## 프로그램 동작 원리
+
+- Storage에 프로그램들이 저장되어 있다.
+- Storage에 저장된 프로그램을 실행하면, 운영체제가 해당 프로그램을 **Memory에 Load**한다.
+    - Storage의 속도가 너무 느리기 때문에, CPU의 처리속도에 맞출 수 없다. 그래서 Storage에 저장된 프로그램을 그나마 좀 더 빠른 Memory에 Load하여 처리하게 된다.
+- 즉, 프로그램은 Storage공간에 먼저 저장되고, 그 프로그램을 실행하게 되면 Memory에 Load되는 절차를 거쳐 실행된다.
+- 이 때 Memory에 Load된 프로그램을 **`Process`**라고 한다.
+
+# 자료형

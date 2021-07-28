@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "[Mac] 각종설치(homebrew, python3, pip, 42norminettev-3).md"
+title: "[Mac] 각종설치(homebrew, python3, pip, 42norminettev-3)"
 date: 2021-07-27 23:44:00 +0900
 category: Mac
 ---
 
 ## homebrew
 - homebrew는 Apple(또는 Linux 시스템)에서 제공하지 않는 유용한 패키지를 받을 수 있는 관리 프로그램이다. 
-- 설치 : https://brew.sh/
+- 설치 : [brew 공식사이트](https://brew.sh/)
 
 ## pythone3
 - brew를 이용하여 설치
@@ -15,6 +15,7 @@ category: Mac
 	```
 		$ brew install python3
 	```
+
 ## pip
 - pip는 파이썬(python)으로 작성된 패키지 소프트웨어를 설치 · 관리하는 패키지 관리 시스템이다. 
 - 설치
@@ -29,3 +30,11 @@ category: Mac
 	```
 
 [참고](https://velog.io/@sunghwki/python3%EB%A1%9C-norminette-v3-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0)
+
+
+<!-- |저장공간|Register|Memory|Storage|
+|:-|:-:|:-:|:-:|
+|용량당 가격|매우비쌈|중간|저렴|
+|처리속도|매우높음|중간|느림|
+|예시|CPU Register|RAM|HDD, SSD| -->
+
