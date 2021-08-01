@@ -28,13 +28,11 @@ category: java
     - RAM이라고 불리는 하드웨어가 Memory 공간을 담당한다.
     - Storage보다 빠르지만, Register보다는 느린 속도로, Storage와 Register 사이에 위치하여 다른 속도 및 용량을 갖고 있는 저장장소들을 보완하는 역할
 
-```markdown
 |저장공간|Register|Memory|Storage|
 |:-|:-:|:-:|:-:|
 |용량당 가격|매우비쌈|중간|저렴|
 |처리속도|매우높음|중간|느림|
 |예시|CPU Register|RAM|HDD, SSD|
-```
 
 ## 프로그램 동작 원리
 

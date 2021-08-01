@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[Mac] 각종설치(homebrew, python3, pip, 42norminettev-3)"
+title: "[Linux] 각종설치(homebrew, python3, pip, 42norminettev-3)"
 date: 2021-07-27 23:44:00 +0900
-category: Mac
+category: linux
 ---
 
 ## homebrew
