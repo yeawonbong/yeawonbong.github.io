@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[C] 시그널 함수 <signal.h>"
+title: "[C] 시그널 관련 함수 <signal.h>"
 date: 2021-08-04 23:59:00 +0900
 category: C
 ---
