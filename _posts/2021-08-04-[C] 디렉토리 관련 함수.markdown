@@ -1,0 +1,82 @@
+---
+layout: post
+title: "[C] 디렉토리 관련 함수"
+date: 2021-08-04 23:59:00 +0900
+category: C
+---
+
+
+## 디렉토리 포인터 `DIR*` 
+디렉토리를 나타내는 구분자로 DIR이라는 예약어를 사용한다.
+- 여기서 DIR은 구조체로, 디렉토리의 많은 정보를 저장할 수 있다.)
+- 디렉토리 관련 작업을 할 때는 우선 `DIR*`포인터 선언을 해야 한다.
+
+
+## opendir
+디렉토리를 열어주는 함수   [*(참고)*](https://badayak.com/4403)
+
+(파일과 마찬가지로, 디렉토리를 사용하기 위해서는 open을 해주어야 한다.)
+
+```c
+#include <sys/types.h>
+#include <dirent.h>
+
+DIR *opendir(const char *name);
+```
+
+- 인자 `name` : 열고자 하는 디렉토리 경로
+- 리턴값
+    - 성공 시 `DIR 구조체에 대한 포인터`
+    - 실패 시 (해당 디렉토리가 존재하지 않거나 권한 등의 이유로 실패) `NULL`
+
+## closedir
+
+디렉토리를 안전하게 닫아주는 함수
+
+```c
+#include <dirent.h> 
+
+int closedir(DIR *dir);
+```
+
+- 인자 `dir` : 닫고자 하는 DIR구조체 포인터
+- 리턴값
+    - 성공 시 `0`
+    - 실패 시 `-1`
+
+## readdir
+
+디렉토리의 하위에 있는 파일 및 디렉토리 정보를 한 건 읽는다. (디렉토리 엔트리 읽기)  [참고](https://www.it-note.kr/14)
+
+```c
+#include <dirent.h> 
+
+struct dirent *readdir(DIR *dirp);
+```
+
+- 인자 `DIR *dirp` : 읽고자 하는 DIR구조체 포인터 (opendir을 통해 생성된 포인터)
+- 리턴값
+    - 성공 시 해당 `디렉토리 내 파일 목록의 주소`를 반환하고, *dir의 다음 파일 목록을 가르킨다.
+        - 반환하는 구조체는 다음과 같다.
+
+            ```c
+            struct dirent 
+            { 
+                ino_t d_ino; /* inode number */ 
+                off_t d_off; /* offset to the next dirent */ 
+                unsigned short d_reclen; /* length of this record */ 
+                unsigned char d_type; /* type of file; not supported by all file system types */
+                char d_name[256]; /* filename */ 
+            };
+            ```
+
+            - 여기서 `d_name` 에는 해당 디렉토리의 엔트리이름, 즉 파일이름일 수 도 있고, 하위디렉토리 이름일 수도 있다.
+    - 실패 시 (더 이상 정보가 없거나, 오류발생 - 상세오류 내용 erno에 저장) `NULL`
+        - erno) EBADF : drip가 유효하지 않습니다. ?
+
+- 읽는 순서는 시간 순서, 파일명 순서, 파일 크기 등 어떤 기준이 없으므로 기본적으로 sorting이 되어 있지 않는다.
+- 1회 호출에 1건의 정보를 return 한다.
+- 한번에 하나의 엔트리만을 읽어들이기 때문에 주로 while문과 함께 쓰이는 경우가 많다.
+- (정리) 디렉토리 포인터 dirp가 가리키는 곳, 즉 해당 디렉토리에서 디렉토리 엔트리에 대한 포인터를 반환하고, 더 이상의 엔트리가 없으면 NULL을 리턴한다. 즉, 해당 디렉토리에서 하나의 엔트리 정보가 구조체 포인터 struct dirend*에 담겨 반환된다.
+
+[참고](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=beyondlegend&logNo=110029848992)

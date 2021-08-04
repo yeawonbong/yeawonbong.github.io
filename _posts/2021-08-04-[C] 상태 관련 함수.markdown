@@ -1,0 +1,180 @@
+---
+layout: post
+title: "[C] 상태 관련 함수"
+date: 2021-08-04 23:59:00 +0900
+category: C
+---
+
+## **getcwd** 
+*pwd명령*
+
+get current work directory [man(getcwd)](https://man7.org/linux/man-pages/man3/getcwd.3.html)
+
+현재 작업하고 있는 디렉토리의 전체 이름 (경로)를 구한다.
+
+```c
+#include <unistd.h>
+
+char *getcwd(char *buf, size_tsize);
+```
+
+- 인자
+
+    `buf` : 작업 디렉토리 문자열을 담을 버퍼 - (앞에 정의해줘야 함)
+
+    `size` : 버퍼의 크기
+
+- 리턴값
+    - 성공 시 `현재 디렉토리 경로`
+    - 실패하면 `-1`
+- 사용예시 [(참고)](http://forum.falinux.com/zbxe/index.php?mid=C_LIB&document_srl=408482)
+
+    ```c
+    #include <stdio.h>
+    #include <unistd.h>
+
+    int main()
+    {
+       char buff[1024];
+
+       mkdir( "test_A"     , 0755);           // 실행 파일이 있는 곳에 생성
+       chdir( "./test_A");                    // 작업 디렉토리를 변경
+       getcwd( buff, 1024);                   // 작업 디렉토리 구하기
+       printf( "작업 디렉토리: %sn", buff);
+    }
+    ```
+
+## chdir  
+*cd명령*
+
+change directory
+
+현재 작업 디렉토리를 변경한다. 
+
+```c
+#include <unistd.h> int chdir(const char * path);
+```
+
+- 인자 `path` : 변경할 directory 경로 (상대 또는 절대 경로)
+- 리턴값
+
+    `0` : 프로세스의 작업디렉토리가 정상적으로 변경됨
+
+    `-1` : 오류가 발생하였으며, 기존의 작업디렉토리가 유지된다. 상세 오류 내용은 errno에 저장된다.
+
+    - 관련 오류 종류
+
+        ```
+        EACCES : path 구성 중의 디렉토리에 search 권한이 없음. 
+        EFAULT : path의 메모리가 bad 주소영역임. 
+        EIO : I/O 중에 오류가 발생함. 
+        ELOOP : symbolic link가 순환 link가 존재함. 
+        ENAMETOOLONG : Full Path명{PATH_MAX}이 너무 길거나 한 디렉토리명{NAME_MAX}이 너무김. 
+        ENOENT : 존재하지 않는 파일임. 
+        ENOTDIR: 디렉토리가 아님.
+        ```
+
+[참고](https://www.it-note.kr/207)
+
+## stat
+<details>
+<summary>stat 명령</summary>
+<div markdown="1">
+
+지정한 대상의 정보를 출력한다 (파일/디렉토리)  
+
+```
+$ stat ybong
+---
+16777222 32965 drwxr-xr-x 23 ybong staff 0 736 "Aug  3 12:50:26 2021" "Aug  3 12:50:25 2021" "Aug  3 12:50:25 2021" "Jul 19 17:16:08 2021" 4096 0 0 ybong
+```
+
+</div>
+</details>
+
+파일의 상태 및 정보를 얻는 함수. 파일의 정보를 stat 구조체에 채워준다. (파일의 크기, 파일의 권한, 파일의 생성일시, 파일의 최종 변경일 등)
+
+```c
+#include <sys/types.h> 
+#include <sys/stat.h> 
+#include <unistd.h> 
+
+int stat(const char *path, struct stat *buf);
+```
+
+```c
+struct stat 
+{
+   dev_t           st_dev;        /*ID of device containing file */
+   ino_t            st_ino;          /*inode number*/
+   mode_t       st_mode;     /*protection*/
+   nlink_t         st_nlink;       /*number of hard links*/
+   uid_t            st_uid;          /*user ID of owner*/
+   gid_t            st_gid;          /*group ID of owner*/
+   dev_t           st_rdev;        /*device ID (if special file)*/
+   off_t             st_size;         /*total size, in byte*/
+   blksize_t      st_blksize;    /*blocksize for file system I/O*/
+   blkcnt_t       st_blocks;     /*number of 512B blocks allocated*/
+   time_t;        st_atime;      /*time of last access*/
+   time_t;        st_mtime;     /*time of last modification*/
+   time_t         st_xtime;       /*time of last status change*/
+};
+
+출처: https://bodamnury.tistory.com/37 [보담누리 "삶"이야기]
+```
+
+- 인자
+
+    `path` : 파일명 또는 파일에 대한 상대 경로 또는 절대경로 문자열
+
+    `buf` : 파일의 상태 및 정보를 저장할 구조체 포인터 (**struct stat**)
+
+- 반환값
+
+    `0` : 정상적으로 파일의 정보를 조회했을 경우.
+
+    `-1` : 오류가 발생, 상세한 오류내용은 errno 전역변수에 저장됨. 
+
+## lstat
+
+```c
+#include <sys/types.h> 
+#include <sys/stat.h> 
+#include <unistd.h> 
+
+int lstat(const char *path, struct stat *buf);
+```
+
+stat 함수와 동일하지만, 한가지 다른 점은 지정한 파일이 (path가) 심볼릭 링크 파일일 경우이다. 
+
+- lstat 함수는 심볼릭 링크 파일에 대한 정보를 구조체에 채우고,
+- stat 함수는 원본의 정보를 채운다.
+
+## fstat
+
+열린 파일의 상태 및 정보를 얻는 함수. stat과 동일하나, 경로 대신 fd를 넣는다. 
+
+```c
+#include <sys/types.h> 
+#include <sys/stat.h> 
+#include <unistd.h> 
+
+int fstat(int fd, struct stat *buf);
+```
+
+## unlink   *≒ rm명령*
+
+**파일** 삭제하는  systemcall 함수 
+
+```c
+#include <unistd.h>
+
+int unlink(const char *pathname);
+```
+
+- 정확하게는 unlink는 hard link의 이름을 삭제하고 hard link가 참조하는 count를 1감소시킨다.
+- *remove()함수와 동작이 같은데, remove 함수가 보다 더 포괄적인 범위를 가지고 있다 (삭제 대상이 파일이면 unlink와 동일, 삭제 대상이 디렉토리면 rmdir과 동일하다)*
+
+[참고](https://www.it-note.kr/177)
+
+[참고-remove와unlink](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=cache798&logNo=130080282221)

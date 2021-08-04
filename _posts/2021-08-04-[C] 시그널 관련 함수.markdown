@@ -1,0 +1,49 @@
+---
+layout: post
+title: "[C] 시그널 함수 <signal.h>"
+date: 2021-08-04 23:59:00 +0900
+category: C
+---
+
+# 시그널 관련 함수
+## **signal**
+
+시그널 처리를 설정한다. (시그널 핸들러 지정)
+
+- signal() 함수는 시그널들의 처리를 어떻게 할 것인가를 설정하는 함수이다.
+- 즉, 어떤 시그널이 발생하면 직접 처리를 할것인지 기존에 사용하던 방법을 따를것인지 혹은 무시를 할것인지를 signal()함수를 통해서 설정할 수 있다.
+
+```c
+#include <sys/types.h>
+#include <signal.h>
+
+void (*signal(int signum, void  (*handler) (int))) (int);
+```
+
+![image](https://user-images.githubusercontent.com/75327385/128218961-c25183df-9050-49a4-9cd5-c8ae45a54656.png)
+
+
+signal 은 이전의 시그널 핸들러의 포인터를 반환하며, 에러시 SIG_ERR 을 리턴한다.
+
+## **kill**
+
+프로세스에게 시그널을 보낸다. 
+
+```c
+int kill(pid_t pid, int sig);
+```
+
+- 첫번째 파라미터 pid : 시그널을 받을 프로세스의 id.
+- 두번째 파리미터 sig : pid로 지정된 프로세스에 보내려는 시그널.
+- pid > 0 인 경우에는 pid로 지정한 프로세스에게 시그널을 보낸다.
+
+## **exit**
+
+exit은 정상적으로 프로세스를 종료하는 함수이다. 
+
+- exit의 입력 인자로 전달하는 status는 호스트 환경에 전달하며 main 함수의 return 값과 같은 역할을 한다.
+- main() 함수에서 return하는 것 = exit(0) 과 ****같다.
+- return : `exit(0)`은 '정상종료', `exit(1)`은 '에러메시지 종료' 
+(각각 EXIT_SUCCESS, EXIT_FAILURE 로 미리 정의되어 있다)
+<br/>
+<br/>

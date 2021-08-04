@@ -7,12 +7,16 @@ category: markdown
 
 예시
 ```markdown
-|저장공간|Register|Memory|Storage|
-|:-|:-:|:-:|:-:|
-|용량당 가격|매우비쌈|중간|저렴|
-|처리속도|매우높음|중간|느림|
-|예시|CPU Register|RAM|HDD, SSD|
+
+    |저장공간|Register|Memory|Storage|
+    |:-|:-:|:-:|:-:|
+    |용량당 가격|매우비쌈|중간|저렴|
+    |처리속도|매우높음|중간|느림|
+    |예시|CPU Register|RAM|HDD, SSD|
+
 ```
+
+
 |저장공간|Register|Memory|Storage|
 |:-|:-:|:-:|:-:|
 |용량당 가격|매우비쌈|중간|저렴|

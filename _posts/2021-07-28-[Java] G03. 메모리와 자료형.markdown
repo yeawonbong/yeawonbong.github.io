@@ -40,6 +40,6 @@ category: java
 - Storage에 저장된 프로그램을 실행하면, 운영체제가 해당 프로그램을 **Memory에 Load**한다.
     - Storage의 속도가 너무 느리기 때문에, CPU의 처리속도에 맞출 수 없다. 그래서 Storage에 저장된 프로그램을 그나마 좀 더 빠른 Memory에 Load하여 처리하게 된다.
 - 즉, 프로그램은 Storage공간에 먼저 저장되고, 그 프로그램을 실행하게 되면 Memory에 Load되는 절차를 거쳐 실행된다.
-- 이 때 Memory에 Load된 프로그램을 **`Process`**라고 한다.
+- 이 때 Memory에 Load된 프로그램을 **Process**라고 한다.
 
 # 자료형

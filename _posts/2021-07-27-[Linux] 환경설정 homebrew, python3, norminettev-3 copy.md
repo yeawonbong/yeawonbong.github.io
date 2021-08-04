@@ -30,11 +30,3 @@ category: linux
 	```
 
 [참고](https://velog.io/@sunghwki/python3%EB%A1%9C-norminette-v3-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0)
-
-
-<!-- |저장공간|Register|Memory|Storage|
-|:-|:-:|:-:|:-:|
-|용량당 가격|매우비쌈|중간|저렴|
-|처리속도|매우높음|중간|느림|
-|예시|CPU Register|RAM|HDD, SSD| -->
-
