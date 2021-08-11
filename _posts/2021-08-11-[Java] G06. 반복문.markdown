@@ -1,0 +1,55 @@
+---
+layout: post
+title: "[Java] G06. 반복문"
+date: 2021-08-11 23:13:00 +0900
+category: java
+---
+
+*Java study with Goorm*  
+# for문
+
+```java
+for(/* 시작조건 */ ; /* 실행조건 */ ; /* 증감식 */) 
+{
+	// 반복 내용
+}
+```
+
+- 시작조건은 가장 처음, 1회 실행된다.
+
+# do while 문
+
+- 우선 1회 동작한 뒤, while 조건을 확인하여 반복.
+
+```java
+do{
+ //반복내용 a++
+}while(a < 5);
+```
+
+# break, continue 문
+
+- break - 반복문 종료
+- continue
+    - 반복문에서만 사용되는 문법으로, 반복문에서 continue문을 만나면 반복문의 조건이 있는 곳(시작부분)으로 돌아가게 된다.
+
+    ```java
+    import java.io.*;
+    class Main {
+    		public static void main(String[] args) throws Exception {
+    			int a = 1;
+    			while(true) {
+    				
+    				if(a > 10) {
+    					break;
+    				} else if(a % 2 == 1) {
+    					a++;
+    					continue;
+    				}
+    				
+    				System.out.println(a++);
+    				
+    			} 
+    		}
+    }
+    ```

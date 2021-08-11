@@ -7,8 +7,11 @@ category: java
 
 *Java study with Goorm*  
 ### Index
-- [컴퓨터가 데이터를 저장하는 공간](#컴퓨터가-데이터를-저장하는-공간)
-- [프로그램 동작 원리](#프로그램-동작-원리)
+
+- [메모리](#메모리)
+- [변수와 상수](#변수와-상수)
+- [자료형](#자료형)
+- [정리](#정리)
 
 <br/>
 <br/>
@@ -42,4 +45,110 @@ category: java
 - 즉, 프로그램은 Storage공간에 먼저 저장되고, 그 프로그램을 실행하게 되면 Memory에 Load되는 절차를 거쳐 실행된다.
 - 이 때 Memory에 Load된 프로그램을 **Process**라고 한다.
 
+</br>
+
+# 변수와 상수
+
+## 변수 (Variable)
+
+- 변할 수 있는 어떤 수.
+- 변수를 선언하면, 컴퓨터는 비어있는 주소를 가져와 변수명이 기록된 공간을 생성한다.
+- 즉, 변수명과 특정 Memory 주소가 연결된다.
+    - 변수명 규칙
+        - 첫 글자에는 `영문자`, `$`, `_`만 사용할 수 있다.
+        - 첫 글자가 아니라면 숫자도 사용 가능하다.
+        - 대소문자는 구별된다.
+        - 예약어는 사용할 수 없다. (예약어 : 자바에서 기본으로 사용하는 예약된 단어. this, if, class, for, abstract 등)
+- 변수를 초기화하지 않으면 컴파일러에서 에러가 발생하므로, 선언 시 초기화하는 습관을 가질것.
+
+## 상수 (Constatnts)
+
+- 값이 변하지 않는 데이터 공간으로, 변수 앞에 **final**을 붙여서 사용한다.
+- 상수로 선언된 자료형은 내부의 값을 변화시킬 수 없고, 선언과 동시에 초기화되어야 한다.
+
+```java
+final int a = 3;
+```
+
+</br>
+
+
 # 자료형
+## 기본형
+
+- 정수형 (Integral Type)
+    - `int` `short` `long`
+- 실수형 (Floating point Type)
+    - `float` `double`
+    - 실수형 자료형에는 정수형 데이터를 저장할 수 있다.
+    - Java에서 일반적인 실수는 기본적으로 double형이다. float형에 실수를 저장할 시에는 숫자 뒤애 f를 붙여 float형태임을 명시해야 한다.
+
+        ```java
+        float varFloat = 12.34f;
+        ```
+
+- Boolean Type (참/거짓형)
+    - `boolean` - 1bit
+
+        ```java
+        boolean varTrue = true;
+        boolean barFalse = false;
+        ```
+
+- 문자형 (Character Type)
+    - `char`
+
+## 참조형
+
+- 기본형이 아닌 자료형은 모두 참조형이다.
+- 참조형은 값이 저장된 **주소를 저장하는 자료형**으로, 자바에서는 모두 **객체의 주소**를 의미한다.
+
+    (C의 포인터와 같은 개념)
+
+1. `Class Type`
+2. `Interface Type`
+3. `Array Type`
+4. `Enum Type`
+
+## 형변환 (Type Casting)
+
+boolean형을 제외한 모든 기본자료형에서 사용 가능하다. 
+
+- 명시적 형변환
+
+    ```java
+    import java.io.*;
+    class Main {
+        public static void main(String[] args) {
+            double varDouble = 98.76;
+            int varInteger = (int)varDouble;  // casting
+            System.out.println(varInteger);	
+        }
+    }
+    ```
+
+    형을 강제변환한다. 위 경우 정수 데이터만 저장될 수 있기 때문에 실수부 (.76)은 유실된다. 
+
+- 묵시적 형번환
+
+    ```java
+    import java.io.*;
+    class Main {
+        public static void main(String[] args) {
+            short varShort = 5;
+            double varDouble = varShort;
+            System.out.println(varDouble); 
+        }
+    }
+    ```
+
+    형태를 명시하지 않는 형변환. 바꾸고자 하는 타입을 명시하지 않아도 자료형이 자동으로 바뀌는 형변환이다. 
+
+    - 묵시적 형변환이 가능한 조건 : `목표 자료형 크기 > 바꾸려는 데이터의 자료형 크기` 일 때 가능하다. (바꾸려는 데이터 자료형의 크기가 더 작을 때)
+
+</br>
+
+# 정리
+
+- 메모리, 변수, 상수 개념
+- 자료형과 형변환(캐스팅)
