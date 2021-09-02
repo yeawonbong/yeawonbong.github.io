@@ -11,7 +11,8 @@ category: java
 - 프로그래밍 과정에서 코드의 간결성을 높여주기 위한 기법으로 사용된다.
 - C의 함수와 비슷한 역할
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8962c108-a4f0-493a-9497-57ca640e8ca3/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8962c108-a4f0-493a-9497-57ca640e8ca3/Untitled.png)
+	![image](https://user-images.githubusercontent.com/75327385/130410791-c8401b9e-c758-401d-a65a-a950cefbb81a.png)
+
 
 - 변수 혹은 상수를 입력하면 메소드 내부에서 연산을 거친 뒤 결괏값을 출력한다.
 - 즉, input 과 output이 존재한다. (C 함수에서의 매개변수, 리턴과 동일)
