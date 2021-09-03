@@ -1,0 +1,14 @@
+---
+layout: post
+title: "[Intellij] 단축키 모음"
+date: 2021-09-02 11:13:00 +0900
+category: intellij
+---
+## Intellij
+- 동일 단어 선택 (vscode에서 cmd + d) : `ctrl^ + G`
+- 현재 코드에서 run 단축키 : `ctrl^ + Shift + R`
+- rename 단축키(파일/디렉토리 왼쪽 list에서) : `shift + F6`
+
+## 코드 자동완성
+- main 클래스 자동완성 : `pvsm + tab` (public void static main)
+- Println 자동완성 : `sout + tab` (System.out.println)
