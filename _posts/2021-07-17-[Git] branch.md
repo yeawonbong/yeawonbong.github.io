@@ -2,7 +2,7 @@
 layout: post
 title: "[Git] Branch 브랜치"
 date: 2021-07-14 18:13:00 +0900
-category: git
+category: Git
 ---
 ~~*계속 덧붙이기*~~
 
@@ -92,10 +92,11 @@ category: git
 
 	$ git push origin :<branchname>
 	```
+	
 	```
 	ybong@ybongui-MacBookPro minitalk % git push origin :ongoing 
 	To https://github.com/yeawonbong/minitalk.git
-	 - [deleted]         ongoing
+	- [deleted]         ongoing
  	```
 
 - 브랜치 생성과 삭제를 한번에

@@ -43,7 +43,7 @@ bugfix branch를 master branch에 **rebase** 하면, bugfix branch의 이력이 
 - rebase만 하게 된다면, 그림처럼 master의 위치는 그대로 유지된 채 뒤에 bugfix 이력들이 이어붙은 상태가 된다. 그 상태에서 master branch의 위치를 변경하고 싶다면, merge를 사용하여 fast-foward 병합을 하면 된다. 
 
 ```
-erge 와 rebase 는 통합 브랜치에 토픽 브랜치를 통합하고자 하는 목적은 같으나, 그 특징은 약간 다릅니다.
+merge 와 rebase 는 통합 브랜치에 토픽 브랜치를 통합하고자 하는 목적은 같으나, 그 특징은 약간 다릅니다.
 
 - merge
 변경 내용의 이력이 모두 그대로 남아 있기 때문에 이력이 복잡해짐.
