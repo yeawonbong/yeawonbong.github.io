@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Java] JavaPractice01"
+title: "[Java] JavaPractice01. 클래스/패키지/객체/클래스/인스턴스"
 date: 2021-09-01 11:13:00 +0900
 category: java
 ---

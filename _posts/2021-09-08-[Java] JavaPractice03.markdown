@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Java] JavaPractice03"
+title: "[Java] JavaPractice03. static/Singleton Pattern/객체배열(shallow copy, deep copy)/enhanced for/javaDoc"
 date: 2021-09-08 11:13:00 +0900
 category: java
 ---

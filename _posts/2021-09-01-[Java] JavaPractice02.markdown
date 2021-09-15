@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Java] JavaPractice02"
+title: "[Java] JavaPractice02. 참조자료형변수/객체협력/접근제어지시자/캡슐화/this"
 date: 2021-09-01 11:13:00 +0900
 category: java
 ---
