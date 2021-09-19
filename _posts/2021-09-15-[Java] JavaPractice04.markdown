@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Java] JavaPractice04. inheritance(상속), super, protected, upcasting, overriding, virtual method(가상메서드), polymorphism(다형성)"
-date: 2021-09-08 11:13:00 +0900
+date: 2021-09-15 11:13:00 +0900
 category: java
 ---
 상속(inheretance), super, protected, upcasting, overriding, 가상메서드(virtual method), 다형성(polymorphism)
