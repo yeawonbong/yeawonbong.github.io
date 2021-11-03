@@ -1,0 +1,94 @@
+---
+layout: post
+title: "[Java] G14. 다형성"
+date: 2021-11-03 11:11:00 +0900
+category: java
+---
+
+[학습목표](#학습목표)  
+[다형성](#다형성-polymorphism)  
+[정리](#정리)
+
+# 학습목표
+
+1. 다형성의 개념, 상속과의 관계 이해
+2. OOP의 특징 이해
+
+# 다형성 Polymorphism
+
+- 객체가 다양한 형태로 표현될 수 있다는 개념.
+    - 추상화된 객체와 같은 '틀'을 가진 객체가 구체화된 객체로 표현 가능하다는 뜻
+- 즉, 부모 클래스를 활용하여 자식의 객체를 제어할 수 있다는 뜻으로 이해하면 된다.
+    
+    ![image](https://user-images.githubusercontent.com/75327385/140003489-1950d672-5da8-4a4d-8c76-3f4492538822.png)
+
+    
+- 다형성은 객체를 여러가지 형태로 변환하여 사용할 수 있는 기법으로, 상속관계에 있는 클래스간에 사용할 수 있다.
+
+```java
+public class Main {
+	public static void main(String[] args) {
+		
+		Animal animal_lion = new Lion("사자");
+		animal_lion.Growl();
+		
+		Animal animal_cat = new Cat("고양이");
+		animal_cat.Growl();
+		//animal_cat.Udada(); 불가능합니다. - 자식의 멤버이기 때문에.
+	}
+}
+
+abstract class Animal {
+	
+	String Name;
+	
+	public Animal(String name) {
+		Name = name;
+	}
+	
+	abstract public void Growl(); 
+}
+
+class Lion extends Animal {
+
+	public Lion(String name) {
+		super(name);
+	}
+
+	public void Growl() {		
+		System.out.println("어흥");
+	}
+}
+
+class Cat extends Animal {
+	public Cat(String name) {
+		super(name);
+	}
+	
+	public void Growl() {		
+		System.out.println("야옹");
+	}
+	
+	public void Udada() {
+		System.out.println("UDADADA");
+	}
+}
+```
+
+- 자식 클래스들을 부모클래스 타입으로 생성하여 사용할 수 있다.
+- 단, 부모 클래스에 없는 멤버를 자식 클래스에서 선언한 경우, 그 멤버는 사용할 수 없다. 현재 타입이 부모클래스 타입이기 때문.
+
+- 다형성은 여러 케이스를 대응해야할 때 자주 사용되는 기법이다.
+- 상황에 맞게 객체를 바꿔서 만들어 사용할 수 있으며, 소스코드의 간결성과 재사용성을 높여주는 기법이다.
+
+# 정리
+
+- 다형성과 상속
+    - 다형성을 사용하면 하나의 객체로 여러 종류의 클래스를 사용할 수 있다.
+    - 다형성은 상속관계의 클래스에서만 사용할 수 있다.
+    - 다형성을 사용하면 코드가 간결해지고 유연성이 좋아진다.
+- OOP의 특징
+    - 캡슐화 : 데이터에 접근권한을 줄 수 있다.
+    - 추상화 : 객체의 뼈대만 우선적으로 만들 수 있다.
+    - 상속 : 부모의 데이터를 가져와 사용할 수 있다.
+    - 다형성 : 객체가 다양한 형태로 바뀔 수 있다.

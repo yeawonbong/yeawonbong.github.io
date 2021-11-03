@@ -1,0 +1,116 @@
+---
+layout: post
+title: "[Java] G15. Exception"
+date: 2021-11-03 11:12:00 +0900
+category: java
+---
+
+[학습목표](#학습목표)  
+[Run-time Error](#run-time-error)  
+[try-catch 문](#try-catch-문)  
+[Exception](#exception)  
+[정리](#정리)
+
+# 학습목표
+
+1. 프로그래머가 고려하지 않은 오류가 발생할 경우 어떻게 처리해야 하는 지
+
+# Run-time Error
+
+- 프로그래밍 과정에서 예상치 못한 실수를 하거나, 혹은 프로그램이 외부요인에 의해 의도한 방향으로 동작하지 않는 경우가 많다
+- 이럴 때 오류를 발생하며 죽어버리는 경우가 발생한다.
+- 이를 프로그래밍 동작 중 오류라 하여 `Run-time Error`라고 한다.
+- 이러한 런타임 에러를 막기 위한 안전장치를 예외처리라고 한다.
+    - 적적히 예외처리를 구현한 프로그램은 프로그램의 안정성을 높이고, 프로그램 신뢰도를 높힌다.
+
+# try-catch 문
+
+- try 혹은 catch 단독으로 사용할 수 없는 세트임.
+- 예를들어
+    
+    ```java
+    public class Main {
+    
+    	public static void main(String[] args) {
+    		
+    		int [] Arr = new int[3];
+    		
+    		for(int j = 0 ; j < 4 ; j++) {
+    			Arr[j] = j;
+    		}
+    	}
+    }
+    ```
+    
+    이럴 경우, 에러가 발생한다 (없는 인덱스에 넣으니까)
+    
+    ```
+    Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+            at Main.main(Main.java:8)
+    ```
+    
+    - Main클래스의 main 메소드에서 (Main.java 파일의 8번째 줄) ArrayIndexOutOfBoundsException이 발생했다는 얘기.
+        - `ArrayIndexOutOfBoundsException` : 배열의 크기보다 더 크거나 작은 위치를 접근하고자 할 때 발생하는 Exception
+- try-catch로 수정해보면
+    
+    ```java
+    public class Main {
+    
+    	public static void main(String[] args) {
+    		
+    		int [] Arr = new int[3];
+    		
+    		try {
+    			for(int j = 0 ; j < 4 ; j++) {
+    				Arr[j] = j;
+    			}
+    		} catch (ArrayIndexOutOfBoundsException e) {
+    			System.out.println("Exception!!!");
+    		}
+    	}
+    }
+    ```
+    
+    - try 문 안에 있는 코드에서 런타임 오류가 발생할 시, 프로그램이 바로 종료되는 것이 아니라, catch문으로 넘어간다.
+    - 단, 이 때 catch문 조건?에 있는 exception 클래스가 try문에서 발생하는 exception과 일치해야 한다.
+    - 과정을 정리하자면 다음과 같다.
+        1. 5: int형 배열 Arr에 3칸이 할당된다.
+        2. 9: j가 3일 때 ArrayIndexOutOfBoundsException 발생
+        3. catch문에 ArrayIndexOutOfBoundsException이 명시되어 있으므로 catch문 내의 소스코드가 동작한다. 
+- 예제
+    
+    ```java
+    public class Main {
+    
+    	public static void main(String[] args) {
+    		
+    		String str = "test";
+    		
+    		try {
+    			int a = Integer.valueOf(str);
+    		} catch (NumberFormatException e) {
+    			System.out.println("Error!");
+    		}	
+    	}
+    }
+    ```
+    
+
+# Exception
+
+- Exception은 앞 강의에서 설명한 try-catch문에 사용되는 클래스이다.
+    - 런타임 에러 발생 시 해당 오류와 관계있는 Exception을 발생하면서 프로그램이 강제 종료되는 것.
+
+## [Exception  클래스](https://docs.oracle.com/javase/7/docs/api/java/lang/Exception.html)들의 상속 형태
+
+![image](https://user-images.githubusercontent.com/75327385/140005277-fb2493dc-f4cb-4021-abd7-a2ae705f7b3a.png)
+
+
+- 여러가지 Exception 클래스들이 상속되어있다.
+- 오류가 발생할 것으로 예상되는 지점에 try-catch문을 사용하여 적절하게 Exception을 사용할 수 있다.
+- 하지만 Exception 클래스 하나만 사용하더라도 모든 종류의 오류를 다 잡아낼 수 있기 때문에, 편한 방향으로 구현할 수 있다.
+
+# 정리
+
+1. try-catch문을 언제 사용하는가
+2. Exception 클래스
