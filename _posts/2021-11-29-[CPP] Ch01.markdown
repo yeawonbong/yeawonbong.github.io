@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[CPP] 01. 기본1"
-date: 2021-11-29 23:59:00 +0900
+title: "[CPP] 01. CPP 기본1"
+date: 2021-11-29 20:59:00 +0900
 category: CPP
 ---
 
