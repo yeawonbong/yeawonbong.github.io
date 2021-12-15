@@ -1,0 +1,310 @@
+---
+layout: post
+title: "[CPP] 05. 복사생성자 (Copy Constructor)"
+date: 2021-12-15 23:59:00 +0900
+category: CPP
+---
+# 05-1. 복사 생성자와의 첫 만남
+
+## C++스타일의 초기화
+
+- 변수 초기화
+    
+    ```java
+    // 기존 C 스타일
+    int num=20;
+    int &ref=num;
+    ```
+    
+    ```java
+    int num(20);
+    int &ref(num);
+    ```
+    
+    C++에서는 위의 두 가지 방식을 동시에 지원하고 있다. (둘은 결과적으로 동일하다.)
+    
+- 객체 초기화
+    
+    (SoSimple이라는 클래스가 있다고 하자.)
+    
+    - 아래와 같이 새로운 객체 sim2에 sim1을 대입할 경우, 멤버 대 멤버의 복사가 일어난다.
+        
+        ```cpp
+        SoSimple sim1(15, 20);
+        SoSimple sim2=sim1;
+        ```
+        
+    - 변수와 마찬가지로 아래 두 문장은 동일한 의미로 해석된다.
+        
+        ```cpp
+        SoSimple sim2=sim1;
+        SoSimple sim2(sim1); 
+        ```
+        
+    - 그런데 모든 객체는 생성자의 호출을 동반한다 하였는데, sim2의 생성자는 어떻게 되는가? 어떤 과정으로 멤버 복사가 일어나는가? (이어서..)
+
+## SoSimple sim2(sim1);
+
+- 이 문장을 정리해보자면
+    - SoSimple형 객체를 생성
+    - 객체의 이름은 sim2
+    - sim1을 인자로 받을 수 잇는 생성자의 호출을 통해서 객체 생성을 완료한다.
+- `SoSimple sim2=sim1;`의 문장도 위의 형태로 묵시적 변환이 되어서 객체가 생성되는 것이다.
+- 그런데 정의한 SoSimple 클래스에는 SoSimple타입의 객체를 인자로 받는 생성자가 정의되어있지 않다.
+    - 그런 생성자를 '복사생성자'라고 한다.
+        
+        ```cpp
+        SoSimple(const SoSimple &copy)
+        	: num1(copy.num), num2(copy.num2)
+        {}
+        ```
+        
+
+## 자동으로 삽입되는 디폴트 복사 생성자
+
+- 복사 생성자를 정의하지 않으면, 멤버 대 멤버의 복사를 진행하는 **디폴트 복사 생성자**가 자동으로 삽입된다.
+
+## 변환에 의한 초기화! 키워드 explicit으로 막을 수 있다!
+
+- 앞서 `SoSimple sim2=sim1;`는 자동으로 `SoSimple sim2(sim1);`로 묵시적 변환이 일어난다고 했다.
+- 이는 즉, 복사 생성자가 묵시적으로 호출된 것으로 볼 수 있다. 이런 변환을 하고싶지 않다면, 복사 생성자의 묵시적 호출을 허용하지 않으면 된다. 이 때 사용되는 키워드가 **explicit**이다.
+- 사용
+    
+    ```cpp
+    explicit SoSimple(const SoSimple &copy)
+    		: num1(copy.num1), num2(copy.num2)
+    {}
+    ```
+    
+    - 이렇게 복사생성자에 explicit 키워드로 정의해놓으면 더이상 묵시적 변환이 발생하지 않아서, 대입 연산자를 이용한 객체의 생성 및 초기화는 불가능하다.
+- 묵시적 변환이 많이 발생하는 코드일 수록 코드의 결과를 예측하기가 어려워지기 때문에, 코드의 명확함을 더하기 위해 자주 사용되는 키워드이다.
+
+## 묵시적 변환
+
+- 이러한 문장의 묵시적 변환은 복사 생성자에만 일어나는 것이 아니다. **전달인자가 하나인 생성자**가 있다면, 묵시적 변환이 발생한다.
+- 예를들어
+    
+    ```cpp
+    class AAA
+    {
+    private:
+    	int num;
+    public:
+    	AAA(int n) : num(n){} // 전달인자가 하나인 생성자
+    };
+    ```
+    
+    위 클래스의 아래의 경우, 묵시적 변환된다. 
+    
+    ```cpp
+    AAA obj=3; // AAA obj(3);으로 묵시적 변환된다.
+    ```
+    
+    - 이또한 explicit을 생성자에 선언하면, 묵시적 변환을 허용하지 않기 때문에 `AAA obj(3);`으로만 객체를 생성할 수밖에 없다.
+
+## 복사생성자의 매개변수는 꼭 참조형이어야 하는가?
+
+Yes.. 나중에 더 다룰 것. 결론적으로는 &선언이 없으면 복사 생성자의 호출은 무한루프에 빠진다고 한다. 
+
+# 05-2. '깊은복사'와 '얕은 복사'
+
+## 얕은복사(Shallow Copy)의 문제점
+
+- 앞서 디폴트 복사 생성자는 멤버 대 멤버의 복사를 진행한다. 그리고 이러한 방식의 복사를 **'얕은복사 Shallow copy'**라고 하는데, 이는 멤버변수가 힙메모리공간을 참조하는 경우에 문제가 된다.
+
+### 디폴트 복사 생성자의 문제점
+
+```cpp
+class Person
+{
+private:
+	char *name;
+	int age;
+};
+
+Person(const Person& copy) : name(copy.name), age(copy.age)
+{}
+```
+
+- 디폴트 복사 생성자의 경우 멤버 대 멤버의 단순 복사를 진행하기 때문에 복사의 결과로 하나의 문자열을 두 개의 객체가 동시에 참조하는 꼴이 된다.
+- 이 때 하나의 객체가 소멸할 때 delete해버리면 다른 객체에서 해당 메모리 공간이 해제되어 사용할 수 없다는 문제가 발생한다.
+
+![image](https://user-images.githubusercontent.com/75327385/146158451-6d61be83-db9f-4907-a175-ce6c77c3f1e6.png)
+
+
+## 깊은 복사(Deep Copy)를 위한 복사 생성자의 정의
+
+- **깊은복사**는 멤버뿐만 아니라, 포인터로 참조하는 대상까지 깊게 복사하는 것이다.
+- 위의 예제를 깊은 복사 생성자로 만든다면..
+    
+    ```cpp
+    Person(const Person& copy) : age(copy.age)
+    {
+    	name=new char[strlen(copy.name)+1];
+    	strcpy(name, copy,name);
+    }
+    ```
+    
+    - 위의 얕은 복사의 경우 바로 포인터에 문자열을 대입해버렸다면, 깊은 복사는 참조하는 문자열 자체를 새로이 할당하여 복사한다.
+
+# 05-3. 복사생성자의 호출 시점
+
+## 복사생성자가 호출되는 세 가지 시점
+
+1. 기존에 생성된 객체를 이용해서 새로운 객체를 초기화하는 경우 (`Person man2=man1;`)
+2. Call-by-value 방식의 함수 호출 과정에서 객체를 인자로 전달하는 경우
+3. 객체를 반환하되, 참조형으로 반환하지 않는 경우
+- 이 세가지는 모두 다음의 공통점을 지닌다.
+    - 객체를 생성해야 한다
+    - 단, 생성과 동시에 동일한 자료형의 객체로 초기화해야 한다.
+
+### 메모리 공간의 할당과 초기화가 동시에 일어나는 상황!
+
+- `int num1=num2;` : num1이라는 메모리 공간 할당과 동시에 num2에 저장된 값으로 초기화하는 상황
+- 함수 호출 시 : 매개변수 n이 할당과 동시에 변수 num의 값으로 초기화된다.
+    
+    ```cpp
+    int SimpleFunc(int n)
+    {
+    	...
+    	return n;   //반환하는 순간 메모리 공간이 할당되면서 초기화
+    }
+    int main(void)
+    {
+    	int num=10;
+    	cout<<SimpleFunc(num)<<endl;  // 함수 호출되는 순간 매개변수 할당되면서 초기화
+    	...
+    }
+    ```
+    
+- 위 코드애서, 함수 종료 전 return에서 n을 반환할 때 메모리공간이 할당되면서 초기화된다.
+    
+    : 값을 반환하면 반환된 값은 별도의 메모리공간이 할당되어서 저장이 된다(반환 값으로 초기화된다). 
+    
+
+---
+
+위와같은 상황은 객체를 대상으로 해도 동일하다. 
+
+## 할당 이후, 복사 생성자를 통한 초기화
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class SoSimple
+{
+private:
+	int num;
+public:
+	SoSimple(int n) : num(n)
+	{ }
+	SoSimple(const SoSimple& copy) : num(copy.num)
+	{
+		cout<<"Called SoSimple(const SoSimple& copy)"<<endl;
+	}
+	SoSimple& AddNum(int n)
+	{
+		num+=n;
+		return *this;
+	}
+	void ShowData()
+	{
+		cout<<"num: "<<num<<endl;
+	}
+};
+
+SoSimple SimpleFuncObj(SoSimple ob)
+{
+	cout<<"return 이전"<<endl;
+	return ob;
+}
+
+int main(void)
+{
+	SoSimple obj(7);
+	SimpleFuncObj(obj).AddNum(30).ShowData(); // 반환된 임시객체를 대상으로 호출
+	obj.ShowData();
+	return 0;
+}
+```
+
+```
+Called SoSimple(const SoSimple& copy)
+return 이전
+Called SoSimple(const SoSimple& copy)
+num: 37
+num: 7
+```
+
+- 첫째 둘째 pass
+- 세번째경우, return 시 객체를 반환하게 되면 '임시객체 Temporary Object'가 생성되고, 이 객체의 복사생성자가 호출되면서 return문에 명시된 객체가 인자로 전달된다. 즉, 함수에서 최종적으로 반환되는 객체는 새롭게 생성되는 임시 객체이다. 따라서 함수 호출이 완료되고 나면, 지역적으로 선언된 객체 ob는 소멸되고, obj 객체와 임시객체만 남는다!!
+- `SimpleFuncObj(obj).AddNum(30).ShowData();`의 부분에서는 반환된 임시객체를 대상으로 값을 증가하고 출력하고 있는 것이다. main에 있는 객체와 다른 객체인 것이다.
+
+## 임시객체
+
+- 임시객체는 참조 값을 반환한다. 따라서 AClass(100).hamsu() 이런식으로 사용할 수 있다.
+- 특징 정리
+    - 다음 행으로 넘어가면 바로 소멸되어 버린다.
+    - 참조자에 참조되는 임시객체는 바로 소멸되지 않는다.
+        - ex) AClass(10); 선언없이 이렇게 임시객체를 생성할 수 있다.
+            - AClass는 임시객체의 참조값이 반환된다.
+        - ex) AClass B = AClass(객체); 이런식으로 임시객체를 사용해서 추가 객체 생성없이 효율성을 높일 수 있다.
+    - return 시, 함수의 호출 시(인자)에도 임시객체를 사용할 수 있다.
+
+### 반환될 때 만들어진 객체 (임시객체)는 언제 사라지나?
+
+- 임시변수
+    
+    임시변수
+    
+    선언없이 변수처럼 쓰이는 주로 상수들이 그렇게 쓰인다.
+    
+    ex) const &a = 3; 일때 3은 임시변수
+    
+- 임시로 생성되었다가 소멸되는 객체이기 때문에
+- 임시객체는 우리가 임의로 만들 수도 있다.
+    
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    
+    class Temporary
+    {
+    private:
+    	int num;
+    public:
+    	Temporary(int n) : num(n)
+    	{
+    		cout<<"create obj: "<<num<<endl;
+    	}
+    	~Temporary()
+    	{
+    		cout<<"destroy obj: "<<num<<endl;  
+    	}
+    	void ShowTempInfo()
+    	{
+    		cout<<"My num is "<<num<<endl;
+    	}
+    };
+    
+    int main(void)
+    {
+    	Temporary(100); //임시 객체 생성!
+    	cout<<"********** after make!"<<endl<<endl;
+    
+    	Temporary(200).ShowTempInfo();
+    	cout<<"********** after make!"<<endl<<endl;
+    
+    	const Temporary &ref=Temporary(300);
+    	cout<<"********** end of main!"<<endl<<endl;
+    	return 0;
+    }
+    ```
+    
+    - 임시 객체가 생성된 위치에는 임시 객체의 참조 값이 반환된다.
+        
+        `(임시객체의 참조 값).ShowTempInfo();`
+        
+    - 다음 행으로 넘어가면 바로 소멸된다.
+    - 참조자에 참조될 경우 소멸되지 않는다.
