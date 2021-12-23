@@ -1,0 +1,127 @@
+---
+layout: post
+title: "[CPP] 07. 상속(Inheritance)의 이해"
+date: 2021-12-20 23:59:00 +0900
+category: CPP
+---
+# 07-1. 상속에 들어가기 앞서
+
+- 데이터적인 성격의 클래스와 기능적 성격의 클래스..
+- 기능의 처리를 실제로 담당하는 클래스를 ‘**컨트롤control 클래스**’ 또는 ‘**핸들러handler 클래스**’라고 한다.
+
+# 07-2. 상속의 문법적 이해
+
+## 상속이란?
+
+- 클래스에서 상속 - 모든 멤버를 물려받는다.
+
+## 상속 방법
+
+```cpp
+class Person
+{
+private:
+	int age;
+	char name[50];
+public:
+	Person(int myage, char * myname) : age(myage)
+	{
+		strcpy(name, myname);
+	}
+	void WhatYourName() const 
+	{
+		cout<<"My name is "<<name<<endl;
+	}
+	void HowOldAreYou() const 
+	{
+		cout<<"I'm "<<age<<" years old"<<endl;
+	}
+};
+
+class UnivStudent : public Person // 클래스 상속
+{
+private:
+	char major[50];
+public:
+	UnivStudent(char * myname, int myage, char * mymajor)
+		: Person(myage, myname)
+	{
+		strcpy(major, mymajor);
+	}
+	void WhoAreYou() const 
+	{
+		WhatYourName();
+		HowOldAreYou();
+		cout<<"My major is "<<major<<endl<<endl;
+	}
+};
+```
+
+## 상속받은 클래스의 생성자 정의
+
+```cpp
+UnivStudent(char * myname, int myage, char * mymajor)
+		: Person(myage, myname)
+	{
+		strcpy(major, mymajor);
+	}
+```
+
+- Person의 멤버도 상속받아 갖고있기 때문에, 초기화를 시켜줘야 한다.
+- 이 때, 생성자를 통해 초기화하는 것이 가장 안정적이다.
+- 따라서 UnivStudent클래스의 생성자에서 Person 생성자를 호출하여 Person클래스의 멤버를 초기화하는 것이 좋다.
+- 이니셜라이저를 통해 Person의 생성자를 호출한다.
+
+## 용어의 정리
+
+| Person | UnivStutent |
+| --- | --- |
+| 상위클래스 | 하위클래스 |
+| 기초(base)클래스 | 유도(derived)클래스 |
+| 슈퍼(super)클래스 | 서브(sub)클래스 |
+| 부모 클래스 | 자식 클래스 |
+
+## 유도 클래스 (자식) 객체의 생성 과정
+
+- 부모 클래스 (기초 클래스) 생성자 호출되고 자식클래스 생성자가 호출된다.
+- 클래스 멤버는 해당 클래스의 생성자를 통해 초기화됨.
+- 즉, 유도 클래스는 생성자가 두 번 호출됨 (기초, 유도)
+
+## 유도 클래스 객체의 소멸 과정
+
+- 역시 두 번 호출된다.
+- 유도클래스 → 기초클래스 순서로 소멸자가 실행된다.
+- 생성자에서 동적 할당된 메모리는 소멸자에서 해제해준다.
+
+# 07-3. protected선언과 세 가지 형태의 상속
+
+## protected로 선언된 멤버가 허용하는 접근의 범위
+
+- private < protected < public
+- protected 변수는 자식클래스(유도 클래스)에서 접근이 가능하다.
+
+## 세 가지 형태의 상속
+
+- private, protected, public
+- 예를들어
+    - private 상속: 모두 private으로 상속
+    - protected 상속: 접근 범위가 더 넓은 멤버들은 모두 protected로 바꾸어 상속받음. - private 빼고 모두 protected로 상속
+    - public 상속: 그대로 상속한다.
+- 이 때 private 멤버는 상속받아도 접근 불가하다. 선언한 객체에서만 사용할 수 있음.
+- 보통 public 상속만 주로 이용한다.
+
+# 07-4. 상속을 위한 조건
+
+## IS-A 관계의 성립
+
+- 유도 클래스는 기초 클래스가 지니는 모든 것을 지니고, 거기에 유도클래스만의 특성들이 더해진다.
+    - 전화기 → 무선전화기
+    - 컴퓨터 → 삼성 컴퓨터
+
+## (+) HAS-A 관계
+
+- 소유의 관계, 상속은 아니고 포함하는 관계. 상속할수도 있으나 의미상으로 생각해야함.
+
+## 정리
+
+- 상속관게는 더 강한 연관성을 띤다.
