@@ -1,0 +1,140 @@
+---
+layout: post
+title: "[CPP] 10. 연산자 오버로딩1"
+date: 2021-12-25 23:59:00 +0900
+category: CPP
+---
+# 10-1. 연산자 오버로딩의 이해와 유형
+
+함수가 오버로딩 되는 것처럼, 연산자 오버로딩을 통해 기존에 존재하던 연산자의 기본 기능 이외에 다른 기능을 추가할 수 있다. 
+
+- 예제
+    
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    
+    class Point 
+    {
+    private:
+    	int xpos, ypos;
+    public:
+    	Point(int x=0, int y=0) : xpos(x), ypos(y)
+    	{  }
+    	void ShowPosition() const
+    	{
+    		cout<<'['<<xpos<<", "<<ypos<<']'<<endl; 
+    	}
+    	Point operator+(const Point &ref)    //operator+라는 이름의 함수
+    	{
+    		Point pos(xpos+ref.xpos, ypos+ref.ypos);
+    		return pos;
+    	}
+    };
+    
+    int main(void)
+    {
+    	Point pos1(3, 4);
+    	Point pos2(10, 20);
+    	Point pos3=pos1.+pos2;
+    
+    	pos1.ShowPosition();
+    	pos2.ShowPosition();
+    	pos3.ShowPosition();
+    	return 0;
+    }
+    ```
+    
+
+## 연산자 오버로딩
+
+- c++에서는 `operator` 키워드와 ‘연산자’를 묶어서 함수의 이름을 정의하면, 함수의 이름을 이용한 함수 호출 뿐 아니라, 연산자를 이용한 함수의 호출도 허용한다.
+    - 즉, 객체간의 연산 `pos1 + pos2`가 있을 때, 이를 `pos1.operator+(pos2)`라는 문장으로 해석하여 컴파일한다.
+        
+        ![image](https://user-images.githubusercontent.com/75327385/147923307-5fa06543-bfe6-460b-bb36-cfe99dfe883f.png)
+
+        
+
+## 연산자를 오버로딩 하는 두 가지 방법
+
+- 어떻게 오버로딩을 했느냐에 따라 해석하는 방법이 두 가지로 나뉜다.
+    
+    ![image](https://user-images.githubusercontent.com/75327385/147923342-5b87baaa-8578-48d4-98c8-ab7ed6500c04.png)
+    
+    - 이 때, 동일한 자료형을 대상으로 + 연산자를 전역함수 기반으로, 그리고 멤버함수 기반으로 동시에 오버로딩 할 셩우, 멤버함수 기반으로 오버로딩된 함수가 더 우선시되어 호출된다.
+1. 멤버함수에 의한 연산자 오버로딩
+    - 앞서 쓴 방법
+2. 전역함수에 의한 연산자 오버로딩
+    - 예제
+        
+        ```cpp
+        #include <iostream>
+        using namespace std;
+        
+        class Point
+        {
+        private:
+        	int xpos, ypos;
+        public:
+        	Point(int x=0, int y=0) : xpos(x), ypos(y)
+        	{  }
+        	void ShowPosition() const
+        	{
+        		cout<<'['<<xpos<<", "<<ypos<<']'<<endl; 
+        	}
+        	friend Point operator+(const Point &pos1, const Point &pos2);
+        };
+        
+        Point operator+(const Point &pos1, const Point &pos2)
+        {
+        	Point pos(pos1.xpos+pos2.xpos, pos1.ypos+pos2.ypos);
+        	return pos;
+        } 
+        
+        int main(void)
+        {
+        	Point pos1(3, 4);
+        	Point pos2(10, 20);	
+        	Point pos3=pos1+pos2;
+        
+        	pos1.ShowPosition();
+        	pos2.ShowPosition();
+        	pos3.ShowPosition();
+        	return 0;
+        }
+        ```
+        
+        - friend의 적절한 사용을 보여주고 있다.
+    - 사실 객체지향에는 전역(global)에 대한 개념이 존재하지 않지만, C++은 C스타일로 코드 구현이 가능하기 때문에 전역에 대한 개념이 여전히 존재한다.
+    - 특별한 경우가 아니면 멤버함수를 기반으로 연산자를 오버로딩 하는 게 낫다.
+
+## 멤버함수 기반으로만 오버로딩이 가능한 연산자
+
+- 객체 대상으로 진행해야 의마가 통하는 연산자들이기 떄문에, 멤버함수 기반으로만 연산자의 오버로딩을 허용한다.
+- `=` - 대입연산자
+- `()` - 함수 호출 연산자
+- `[]` - 배열 접근 연산자 (인덱스 연산자)
+- `->` - 멤버 접근을 위한 포인터 연산자
+
+## 연산자 오버로딩 주의사항
+
+- 오버로딩 시 본래의 의도를 벗어나지 않도록 한다.
+- 연산자의 우선순위와 결합성은 그대로이다. [ref](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ruvendix&logNo=220897246448)
+    - 우선순위
+        
+        ![스크린샷 2021-12-26 오후 5.40.10.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbff6f7a-0782-4872-84da-6b042c539daa/스크린샷_2021-12-26_오후_5.40.10.png)
+        
+    - 결합성
+        
+        ![image](https://user-images.githubusercontent.com/75327385/147923384-b51dc267-b107-44c6-a85c-57c7c0109365.png)
+        
+- 매개변수의 디폴트값 설정이 불가능하다.
+
+# 10-2. 단항 연산자의 오버로딩
+
+## 증가, 감소 연산자의 오버로딩
+
+(pos라는 객체가 있다고 하자.)
+
+- `++pos;` == `pos.operator++();`
+- == `operator++(pos);`
