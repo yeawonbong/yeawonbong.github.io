@@ -1,0 +1,56 @@
+---
+layout: post
+title: "[MySQL] MySQL 설치지옥 (ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2))"
+date: 2022-02-10 23:59:00 +0900
+category: mysql
+---
+## 문제는..
+- `mysql.server start` 서버 시작시켰을 때, 
+```
+(ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2))
+```
+이런 에러가 뜬다. 
+### 경로
+일단 내 mysql은 경로가 일반적인 경로랑 다르다. /opt/homebrew 안에 위치함. (어떻게 바꾸는 지 모르겠다.. 옮기려 해도 Denied된다. 그냥 경로를 외워서 일단 패스했다.) `/opt/homebrew/var/mysql`
+
+### solution1 - mysql 디렉토리의 ownership 변경
+```
+	sudo chown -R _mysql:_mysql [mysql]-mysql경로
+```
+![](https://images.velog.io/images/yeawonbong/post/469c4dc4-1229-4893-b6be-ae1d5b0f4f67/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-02-08%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.12.13.png)
+- 나는 근데 원래 owner가 _mysql이다. 패스
+### solution2 - mysql 디렉토리의 권한 변경
+```
+	sudo chmod 777 [/opt/homebrew/var/mysql]-mysql경로
+```
+- 위에서 볼 수 있듯, 이미 권한이 777이다. 패스ㅜ
+### solution3 - 상위폴더도 권한을 변경해준다
+```
+	chmod 777 [/opt/homebrew/var]-상위폴더 경로
+```
+- 오.. 여기 일단 변경해봤다. 하지만 되지 않음
+### solution4 - config 파일 확인
+```
+mysql --verbose --help | grep my.cnf
+```
+하면 config file (my.cnf)의 위치를 알 수 있다.
+![](https://images.velog.io/images/yeawonbong/post/f8a5055e-93bb-4f58-86a9-ef867cc00a49/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-02-08%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.24.46.png)
+`/etc/my.cnf` (x)
+`/etc/mysql/my.cnf` (x)
+`/opt/homebrew/etc/my.cnf` (o) 여깄다!
+`~/.my.cnf` (x)
+~~(어느것이 맞다는거지..?)~~
+여러 개가 출력될건데, 하나하나 체크해봐라!
+### solution5 - ~~mySQL을 완전히 지우기~~
+위 경로중 어떤 경로에서도 my.cnf 파일을 찾지 못했다면, 지웠다 다시 깔아라. 
+~~와..config 있었지만 다시 지웠다 깔았는데 된다. 완전히 지우는게 관건인듯~~
+
+- brew services list 했을 때 나오는 .plist파일들 경로 들어가서 다 지워줌
+- `brew remove ~`, `brew uninstall ~`, `brew cleanup` 해서 다 지워졌다 생각했는데, 이후 mysql 있던 경로 찾아가니 디렉토리가 남아있었다. 경로 가서 완전히 지워준 후 `rm -rf ~`
+- 재설치! `brew install mysql@5.7`
+![](https://images.velog.io/images/yeawonbong/post/b261daed-b4f7-4e50-8914-e0d2845f9132/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-02-08%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.57.18.png)
+드디어 초록글씨를 봤다... 감격의 순간..
+### 이후 과정
+- database 생성 `mysql -uroot -p` ... 
+
+[ref](https://janac.medium.com/mysql-error-the-server-quit-without-updating-pid-file-ce320ff75828)

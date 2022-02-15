@@ -1,0 +1,58 @@
+---
+layout: post
+title: "[MySQL] 맥에서 MySQL 실행하기"
+date: 2022-02-08 23:59:00 +0900
+category: mysql
+---
+# MySQL
+
+## Database
+
+### Database란?
+
+- 데이터의 집합
+- 예를들어, 책 하나 하나를 **데이터**, 그 책들이 모여있는 것을 **데이터베이스**라고 이해하면 된다.
+
+### Database의 특성
+
+- 실시간 접근성, Real-time Accessability (요구를 즉시 처리)
+- 계속적인 변화 (데이터의 지속적 갱신)
+- 동시 공유성 (동시에 동일한 데이터에 접근 가능)
+- 내용 참조 (주소가 아닌 데이터의 내용, 데이터의 값에 따라 참조할 수 있어야 한다.)
+
+## DBMS란?
+
+- Database Management System, 데이터베이스 관리 시스템
+- 예를 들어, 근데 그 책들이 도서관에서 사서에 의해 잘 관리되고 있다. 이런 역할이 데이터베이스 관리 시스템, **DBMS**이다.
+- MySQL, Oracle, MyBatis 등이 있다.
+
+## MySQL (맥에서 MySQL 서버 실행하기)
+
+- 설치
+    - `brew mysql`
+- 실행
+    - `mysql.server start`
+- MySQL을 데몬으로 실행
+    - `brew services start mysql`
+    - 운영체제의 백그라운드로 MySQL이 계혹 실행되게 하고 싶을 때, HomeBrew가 제공하는 명령을 이용하면 된다. → 데몬 실행
+    - 데몬 프로세스 (daemon process) 서비스 요청에 응답하기 위해 오랫동안 실행중인 **백그라운드 프로세스.** 운영체제에서 보통 d로 끝나는 프로세스들이 대표적인데, httpd, sshd, named, lpd 등이 있다.
+- 재시작
+    - `brew services restart mysql`
+- 데몬으로 실행되고 있는 프로그램들 보기
+    - `brew services list`
+    - MySQL 프로세스가 운영체제에 실행되고 있는 지 확인할 때 여기로 확인
+- 종료
+    1. 터미널에서 명령으로 실행한 경우 (mysql.server start)
+    - `mysql.server stop`
+    1. HomeBrew를 이용해서 데몬으로 실행했다면 
+    (brew services start mysql)
+    - `brew services stop mysql`
+---
+- 버전 확인
+    - `mysql -V`
+- 삭제
+    - `brew uninstall mysql`
+    - `rm -rf /usr/local/var/mysql`
+    - `rm /usr/local/etc/my.cnf`
+- 아래버전 다운로드..
+    - `brew install mysql@5.7`
