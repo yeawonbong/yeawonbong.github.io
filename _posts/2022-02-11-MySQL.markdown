@@ -2,7 +2,7 @@
 layout: post
 title: "[MySQL] SQL이란?"
 date: 2022-02-11 23:59:00 +0900
-category: mysql sql
+category: mysql
 ---
 # SQL이란?
 

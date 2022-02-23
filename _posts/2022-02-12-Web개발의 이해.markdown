@@ -2,7 +2,7 @@
 layout: post
 title: "[Web] Web개발의 이해"
 date: 2022-02-11 23:59:00 +0900
-category: web was http
+category: web
 ---
 # 웹의 동작 (HTTP 프로토콜)
 
